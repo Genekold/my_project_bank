@@ -11,7 +11,7 @@ ___
 git clone https://github.com/Genekold/my_project_bank.git
 ```
 ___
-## *Тестировнаие*
+## *Тестировнаие:*
 Проект протестирован **"Code coverage"** с поцентом покрытия 100%!
 ___
 
