@@ -7,9 +7,11 @@ def card_account(type_number: str) -> str:
     if len(elements[-1]) == 16:
         elements[-1] = mask_card(elements[-1])
         return " ".join(elements)
-    else:
+    elif len(elements[-1]) == 20:
         elements[-1] = mask_bank_account(elements[-1])
         return " ".join(elements)
+    else:
+        return "Не верный номер карты/счета"
 
 
 def data_view(data: str) -> str:
