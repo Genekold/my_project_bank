@@ -27,6 +27,6 @@ def card_number_generator(start: int, end: int) -> Iterator:
 
     base_number = "0000000000000000"
     for numb in range(start, end + 1):
-        len_end = len(str(end))
+        len_end = len(str(numb))
         number_card = base_number[:-len_end] + str(numb)
         yield f"{number_card[:4]} {number_card[4:8]} {number_card[8:12]} {number_card[12:]}"
