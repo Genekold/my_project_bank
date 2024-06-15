@@ -13,27 +13,21 @@ def log(filepath: str | None = None) -> Callable[..., Any]:
         @wraps(func)
         def inner(*args: Any, **kwargs: Any) -> Any:
             try:
-                massege_ok = f"{func.__name__} ок"
                 result = func(*args, **kwargs)
-
-                if not filepath:
-                    print(massege_ok)
-
-                else:
-                    with open(filepath, "a") as file:
-                        file.write(massege_ok + "\n")
-
+                massege = f"{func.__name__} ok"
                 return result
 
             except Exception as e:
-                massege_err = f"{func.__name__} error: {e.__class__.__name__}. Inputs: {args}, {kwargs}"
+                massege = f"{func.__name__} error: {e.__class__.__name__}. Inputs: {args}, {kwargs}"
+                raise
 
+            finally:
                 if not filepath:
-                    print(massege_err)
+                    print(massege)
 
                 else:
                     with open(filepath, "a") as file:
-                        file.write(massege_err + "\n")
+                        file.write(massege + "\n")
 
         return inner
 
