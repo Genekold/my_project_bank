@@ -13,7 +13,7 @@ def data_transaction(path: str) -> list[dict]:
     """
 
     if not os.path.exists(path):
-        return []
+        return [1]
 
     with open(path, encoding="utf8") as file:
         try:
