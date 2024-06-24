@@ -1,11 +1,10 @@
 import os
-from typing import Any, Optional
 
 import requests
 from dotenv import load_dotenv
 
 
-def get_convert_currency(amount: float, currency: str, to_currency: str = "RUB") -> str | Any:
+def get_convert_currency(amount: float, currency: str, to_currency: str = "RUB") -> float | str:
     """
     Функция, котрая переводит сумму транзации в рубли по дейсвующему курсу
     :param amount: сумма транзакции
