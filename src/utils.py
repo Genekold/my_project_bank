@@ -1,6 +1,8 @@
 import json
 import os.path
 
+from config import ROOT_DIR
+
 
 def data_transaction(path: str) -> list[dict]:
     """
@@ -13,7 +15,7 @@ def data_transaction(path: str) -> list[dict]:
     """
 
     if not os.path.exists(path):
-        return [1]
+        return []
 
     with open(path, encoding="utf8") as file:
         try:

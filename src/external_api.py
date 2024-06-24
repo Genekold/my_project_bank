@@ -17,7 +17,7 @@ def get_convert_currency(amount: float, currency: str, to_currency: str = "RUB")
     url = "https://api.apilayer.com/exchangerates_data/convert"
     header = {'apikey': os.getenv('API_KEY')}
     params = {'amount': amount, 'from': currency, 'to': to_currency}
-    response = requests.get(url, headers=header)
+    response = requests.get(url, headers=header, params=params)
     if response.status_code != 200:
         return f'Неуспешный запрос'
     data = response.json()
