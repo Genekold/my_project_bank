@@ -1,8 +1,6 @@
 import json
 import os.path
 
-from config import ROOT_DIR
-
 
 def data_transaction(path: str) -> list[dict]:
     """
