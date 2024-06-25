@@ -31,17 +31,18 @@ def data_transaction(path: str) -> list[dict]:
     with open((file_path), encoding="utf8") as file:
         try:
             data = json.load(file)
-            logger.info(f'Файл загружен')
+            logger.info('Файл загружен')
             if isinstance(data, list):
-                logger.info(f'Обьект является списком')
+                logger.info('Обьект является списком')
                 return data
             else:
                 logger.error(f'Обьект {data} не является списком')
                 return []
 
         except json.JSONDecodeError:
-            logger.error(f'Это не JSON-обьект')
+            logger.error('Это не JSON-обьект')
             return []
+
 
 if __name__ == '__main__':
     print(data_transaction("operations.json"))
