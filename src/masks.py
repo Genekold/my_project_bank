@@ -33,7 +33,3 @@ def mask_bank_account(number_bank_account: str) -> str:
     logger.debug(f'Замаскированный номер счета {result}')
 
     return result
-
-
-if __name__ == '__main__':
-    print(mask_bank_account('70007922896063613356'))

@@ -25,7 +25,7 @@ def data_transaction(path: str) -> list[dict]:
     file_path = os.path.join(DATA_DIR, path)
 
     if not os.path.exists(file_path):
-        logger.error(f'{path} Такого пути не существует')
+        logger.error(f'{file_path} Такого пути не существует')
         return []
 
     with open((file_path), encoding="utf8") as file:
@@ -42,7 +42,3 @@ def data_transaction(path: str) -> list[dict]:
         except json.JSONDecodeError:
             logger.error('Это не JSON-обьект')
             return []
-
-
-if __name__ == '__main__':
-    print(data_transaction("operations.json"))
