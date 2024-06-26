@@ -1,11 +1,10 @@
 import os
 
 import requests
-
 from dotenv import load_dotenv
 
 
-def get_convert_currency(amount: float, currency: str, to_currency: str = "RUB") -> float:
+def get_convert_currency(amount: float, currency: str, to_currency: str = "RUB") -> float | str:
     """
     Функция, котрая переводит сумму транзации в рубли по дейсвующему курсу
     :param amount: сумма транзакции
@@ -19,7 +18,7 @@ def get_convert_currency(amount: float, currency: str, to_currency: str = "RUB")
     params = {'amount': amount, 'from': currency, 'to': to_currency}
     response = requests.get(url, headers=header, params=params)
     if response.status_code != 200:
-        return f'Неуспешный запрос'
+        return 'Неуспешный запрос'
     data = response.json()
     convert_amount = round(data['result'], 2)
 
@@ -41,4 +40,4 @@ def get_convert_trasaction(transaction: dict) -> float | None:
             return get_convert_currency(amount, currency)
         return float(amount)
     except KeyError as e:
-        raise KeyError(f'Ключ не найден')
+        raise KeyError(f'Ключ {e} не найден')
