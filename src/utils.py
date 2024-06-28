@@ -83,6 +83,7 @@ def get_transactions_from_csv(path: str) -> list[dict]:
     except Exception as e:
         logger.error(f"Ошибка {e} при чтении {path} файла")
 
+
 def get_transactions_from_xlsx(path: str) -> list[dict]:
     """
     Функция, которая принимает на вход путь до XLSX-файла и возвращает
@@ -113,6 +114,3 @@ def get_transactions_from_xlsx(path: str) -> list[dict]:
         return []
     except Exception as e:
         logger.error(f"Ошибка {e} при чтении {path} файла")
-
-if __name__ == '__main__':
-    print(get_transactions_from_json('operations.json'))
