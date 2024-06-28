@@ -14,12 +14,12 @@ logger.addHandler(file_handler)
 def mask_card(nuber_card: str) -> str:
     """Функция которая маскирует номер карты в формате ХХХХ ХХ** **** ХХХХ"""
 
-    logger.info(f'Получен номер карты {nuber_card}')
+    logger.info(f"Получен номер карты {nuber_card}")
     first_digit = nuber_card[:4]
     second_digit = nuber_card[4:6]
     last_digit = nuber_card[-4:]
     result = f"{first_digit} {second_digit}** **** {last_digit}"
-    logger.debug(f'замаскированный номер карты {result}')
+    logger.debug(f"замаскированный номер карты {result}")
 
     return result
 
@@ -27,9 +27,9 @@ def mask_card(nuber_card: str) -> str:
 def mask_bank_account(number_bank_account: str) -> str:
     """Функция которая маскирует номер счета в формате **ХХХХ"""
 
-    logger.info(f'Получен номер cчета {number_bank_account}')
+    logger.info(f"Получен номер cчета {number_bank_account}")
     last_digits = number_bank_account[-4:]
     result = f"**{last_digits}"
-    logger.debug(f'Замаскированный номер счета {result}')
+    logger.debug(f"Замаскированный номер счета {result}")
 
     return result

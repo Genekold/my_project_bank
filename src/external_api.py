@@ -14,13 +14,13 @@ def get_convert_currency(amount: float, currency: str, to_currency: str = "RUB")
     """
     load_dotenv()
     url = "https://api.apilayer.com/exchangerates_data/convert"
-    header = {'apikey': os.getenv('API_KEY')}
-    params = {'amount': amount, 'from': currency, 'to': to_currency}
+    header = {"apikey": os.getenv("API_KEY")}
+    params = {"amount": amount, "from": currency, "to": to_currency}
     response = requests.get(url, headers=header, params=params)
     if response.status_code != 200:
-        return 'Неуспешный запрос'
+        return "Неуспешный запрос"
     data = response.json()
-    convert_amount = round(data['result'], 2)
+    convert_amount = round(data["result"], 2)
 
     return convert_amount
 
@@ -33,11 +33,11 @@ def get_convert_trasaction(transaction: dict) -> float | None:
     """
 
     try:
-        amount = transaction['operationAmount']['amount']
-        currency = transaction['operationAmount']['currency']['code']
+        amount = transaction["operationAmount"]["amount"]
+        currency = transaction["operationAmount"]["currency"]["code"]
 
-        if currency != 'RUB':
+        if currency != "RUB":
             return get_convert_currency(amount, currency)
         return float(amount)
     except KeyError as e:
-        raise KeyError(f'Ключ {e} не найден')
+        raise KeyError(f"Ключ {e} не найден")
