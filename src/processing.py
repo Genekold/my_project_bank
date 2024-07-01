@@ -1,4 +1,5 @@
 import re
+from collections import defaultdict
 
 
 def get_list_by_key(operations: list, state: str = "EXECUTED") -> list:
@@ -37,3 +38,21 @@ def get_filter_list_by_description(list_operations: list[dict], search_line: str
         except Exception:
             continue
     return filtr_operation
+
+
+def get_count_operations_by_description(list_opetations: list[dict], list_category: list) -> list[dict]:
+    """
+    Функция счетчик операций по выбранным категориям
+    :param list_opetations: Список словарей банковских операций.
+    :param list_category: Список операций для поиска.
+    :return:
+    """
+    filtr_operations = defaultdict(int)
+    for operation in list_opetations:
+        try:
+            descript = operation.get('description')
+            if descript in list_category:
+                filtr_operations[descript] += 1
+        except Exception:
+            continue
+    return filtr_operations
