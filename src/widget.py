@@ -1,4 +1,5 @@
 import re
+
 from src.masks import mask_bank_account, mask_card
 
 
