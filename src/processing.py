@@ -23,16 +23,16 @@ def sort_list_by_data(operations: list, ascending: bool = True) -> list:
 
 def get_filter_list_by_description(list_operations: list[dict], search_line: str) -> list[dict]:
     """
-     Функция фильтрует банковские операции по строке введеной пользователем
+     Функция фильтрует банковские операции у котроых в описании есть строка введенная пользователем
     :param list_operations: Список словарей о банковских операций.
     :param search_line: Строка поиска.
     :return: Список словарей в которой есть в отисании строка поиска.
     """
     filtr_operation = []
-    for operation in operations:
+    for operation in list_operations:
         descript = operation.get('description')
         try:
-            match = re.search(search_line, descript, re.IGNORECASE)
+            match = re.search(search_line, descript, flags=re.IGNORECASE)
             if match:
                 filtr_operation.append(operation)
         except Exception:
