@@ -1,3 +1,8 @@
+import re
+from collections import defaultdict, Counter
+
+
+
 def get_list_by_key(operations: list, state: str = "EXECUTED") -> list:
     """Функция вернет список словарей по ключу (state)"""
 
@@ -15,3 +20,37 @@ def sort_list_by_data(operations: list, ascending: bool = True) -> list:
     sort_list = sorted(operations, key=lambda operation: operation["date"], reverse=ascending)
 
     return sort_list
+
+
+def get_filter_list_by_description(list_operations: list[dict], search_line: str) -> list[dict]:
+    """
+     Функция фильтрует банковские операции у котроых в описании есть строка введенная пользователем
+    :param list_operations: Список словарей о банковских операций.
+    :param search_line: Строка поиска.
+    :return: Список словарей в которой есть в отисании строка поиска.
+    """
+    filtr_operation = []
+    for operation in list_operations:
+        descript = operation.get('description')
+        try:
+            match = re.search(search_line, descript, flags=re.IGNORECASE)
+            if match:
+                filtr_operation.append(operation)
+        except Exception:
+            continue
+    return filtr_operation
+
+
+def get_count_operations_by_description(list_opetations: list[dict], list_category: list) -> list[dict]:
+    """
+    Функция счетчик операций по выбранным категориям
+    :param list_opetations: Список словарей банковских операций.
+    :param list_category: Список операций для поиска.
+    :return:
+    """
+    count = Counter()
+    for operation in list_opetations:
+        for category in list_category:
+            if category in operation["description"]:
+                count[category] +=1
+    return dict(count)
