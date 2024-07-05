@@ -1,5 +1,6 @@
 import re
-from collections import defaultdict
+from collections import defaultdict, Counter
+
 
 
 def get_list_by_key(operations: list, state: str = "EXECUTED") -> list:
@@ -47,12 +48,9 @@ def get_count_operations_by_description(list_opetations: list[dict], list_catego
     :param list_category: Список операций для поиска.
     :return:
     """
-    filtr_operations = defaultdict(int)
+    count = Counter()
     for operation in list_opetations:
-        try:
-            descript = operation.get('description')
-            if descript in list_category:
-                filtr_operations[descript] += 1
-        except Exception:
-            continue
-    return filtr_operations
+        for category in list_category:
+            if category in operation["description"]:
+                count[category] +=1
+    return dict(count)
